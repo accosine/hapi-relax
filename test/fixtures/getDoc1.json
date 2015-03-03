@@ -1,0 +1,80 @@
+[
+  {
+    "scope": "http://localhost:5984",
+    "method": "GET",
+    "path": "/test2/doc1",
+    "body": "",
+    "status": 401,
+    "response": {
+      "error": "unauthorized",
+      "reason": "You are not authorized to access this db."
+    },
+    "headers": {
+      "date": "Tue, 03 Mar 2015 18:29:38 GMT",
+      "content-type": "application/json",
+      "cache-control": "must-revalidate",
+      "statusCode": 401,
+      "uri": "http://localhost:5984/test2/doc1"
+    },
+    "reqheaders": {
+      "content-type": "application/json",
+      "accept": "application/json",
+      "host": "localhost:5984"
+    }
+  },
+  {
+    "scope": "http://localhost:5984",
+    "method": "POST",
+    "path": "/_session",
+    "body": "name=root&password=asdf",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "name": null,
+      "roles": [
+        "_admin"
+      ]
+    },
+    "headers": {
+      "set-cookie": [
+        "AuthSession=cm9vdDo1NEY1RkQ5MjpS9VHh_F4slNfIgnpJV6Nzs53mNA; Version=1; Path=/; HttpOnly"
+      ],
+      "date": "Tue, 03 Mar 2015 18:29:38 GMT",
+      "content-type": "application/json",
+      "cache-control": "must-revalidate",
+      "statusCode": 200,
+      "uri": "http://localhost:5984/_session"
+    },
+    "reqheaders": {
+      "content-type": "application/x-www-form-urlencoded; charset=utf-8",
+      "accept": "application/json",
+      "host": "localhost:5984",
+      "content-length": 23
+    }
+  },
+  {
+    "scope": "http://localhost:5984",
+    "method": "GET",
+    "path": "/test2/doc1",
+    "body": "",
+    "status": 404,
+    "response": {
+      "error": "not_found",
+      "reason": "missing"
+    },
+    "headers": {
+      "date": "Tue, 03 Mar 2015 18:29:38 GMT",
+      "content-type": "application/json",
+      "cache-control": "must-revalidate",
+      "statusCode": 404,
+      "uri": "http://localhost:5984/test2/doc1"
+    },
+    "reqheaders": {
+      "content-type": "application/json",
+      "accept": "application/json",
+      "x-couchdb-www-authenticate": "Cookie",
+      "cookie": "AuthSession=cm9vdDo1NEY1RkQ5MjpS9VHh_F4slNfIgnpJV6Nzs53mNA; Version=1; Path=/; HttpOnly",
+      "host": "localhost:5984"
+    }
+  }
+]
