@@ -1,7 +1,7 @@
 {
   "name": "hapi-relax",
   "description": "Wraps nano's API as hapi server methods and seamlessly authenticates with cookie",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index",
   "scripts": {
     "test": "./node_modules/lab/bin/lab -c -v -L -l",
