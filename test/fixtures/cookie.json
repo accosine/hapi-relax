@@ -1,0 +1,101 @@
+[
+  {
+    "scope": "http://localhost:5984",
+    "method": "GET",
+    "path": "/test2",
+    "body": "",
+    "status": 401,
+    "response": {
+      "error": "unauthorized",
+      "reason": "You are not authorized to access this db."
+    },
+    "headers": {
+      "date": "Tue, 03 Mar 2015 23:38:56 GMT",
+      "content-type": "application/json",
+      "cache-control": "must-revalidate",
+      "statusCode": 401,
+      "uri": "http://localhost:5984/test2"
+    }
+  },
+  {
+    "scope": "http://localhost:5984",
+    "method": "POST",
+    "path": "/_session",
+    "body": "name=root&password=asdf",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "name": null,
+      "roles": [
+        "_admin"
+      ]
+    },
+    "headers": {
+      "set-cookie": [
+        "AuthSession=cm9vdDo1NEY2NDYxMDqFtL7zI-jJNHnkUO_V_zF5zldTSw; Version=1; Path=/; HttpOnly"
+      ],
+      "date": "Tue, 03 Mar 2015 23:38:56 GMT",
+      "content-type": "application/json",
+      "cache-control": "must-revalidate",
+      "statusCode": 200,
+      "uri": "http://localhost:5984/_session"
+    }
+  },
+  {
+    "scope": "http://localhost:5984",
+    "method": "GET",
+    "path": "/test2",
+    "body": "",
+    "status": 200,
+    "response": {
+      "db_name": "test2",
+      "doc_count": 1,
+      "doc_del_count": 0,
+      "update_seq": 2,
+      "purge_seq": 0,
+      "compact_running": false,
+      "disk_size": 8283,
+      "data_size": 241,
+      "instance_start_time": "1425425623223505",
+      "disk_format_version": 6,
+      "committed_update_seq": 2
+    },
+    "headers": {
+      "date": "Tue, 03 Mar 2015 23:38:56 GMT",
+      "content-type": "application/json",
+      "cache-control": "must-revalidate",
+      "statusCode": 200,
+      "uri": "http://localhost:5984/test2"
+    }
+  },
+  {
+    "scope": "http://localhost:5984",
+    "method": "GET",
+    "path": "/test2",
+    "body": "",
+    "status": 200,
+    "response": {
+      "db_name": "test2",
+      "doc_count": 1,
+      "doc_del_count": 0,
+      "update_seq": 2,
+      "purge_seq": 0,
+      "compact_running": false,
+      "disk_size": 8283,
+      "data_size": 241,
+      "instance_start_time": "1425425623223505",
+      "disk_format_version": 6,
+      "committed_update_seq": 2
+    },
+    "headers": {
+      "set-cookie": [
+        "AuthSession=cm9vdDo1NEY2NDYxNTpv9jCScmx-ArbhRJzV1kumKQ3INw; Version=1; Path=/; HttpOnly"
+      ],
+      "date": "Tue, 03 Mar 2015 23:39:01 GMT",
+      "content-type": "application/json",
+      "cache-control": "must-revalidate",
+      "statusCode": 200,
+      "uri": "http://localhost:5984/test2"
+    }
+  }
+]

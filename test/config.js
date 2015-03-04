@@ -49,7 +49,7 @@ module.exports = {
           },
           'user': 'root',
           'password': 'wrong',
-          'prefix': 'customPrefix'
+          'prefix': 'wrongPw'
         }
       }
     ]

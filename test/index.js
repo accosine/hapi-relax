@@ -86,27 +86,73 @@ lab.experiment('Server methods', function() {
   });
 });
 
-lab.experiment('False credentials', function() {
+lab.experiment('Authentication', function() {
   var server = new Hapi.Server();
 
   lab.before(function (done) {
-    server.register(plugins.c, function (err) {
+    server.register(plugins.b.concat(plugins.c), function (err) {
       done();
     });
   });
 
-  lab.test('Get method returns error when credentials are wrong', function (done) {
+    lab.test('Get method returns error when credentials are wrong', function (done) {
+      nockBack('auth.json', function (nockDone) {
+        server.methods.wrongPw.get('doc1', function (err, body, headers) {
+          Code.expect(err).to.be.an.instanceof(Error);
+          Code.expect(err.reason).to.equal('Name or password is incorrect.');
+          Code.expect(err.statusCode).to.equal(401);
+          Code.expect(err.errid).to.equal('non_200');
+          Code.expect(err.description).to.equal('couch returned 401');
+          Nock.cleanAll();
+          nockDone();
+          done();
+        });
+      });
+    });
 
-    nockBack('auth.json', function (nockDone) {
-      server.methods.customPrefix.get('doc1', function (err, body, headers) {
-        Code.expect(err).to.be.an.instanceof(Error);
-        Code.expect(err.reason).to.equal('Name or password is incorrect.');
-        Code.expect(err.statusCode).to.equal(401);
-        Code.expect(err.errid).to.equal('non_200');
-        Code.expect(err.description).to.equal('couch returned 401');
-        Nock.cleanAll();
-        nockDone();
-        done();
+
+  lab.test('Two requests in a row should only require one authentication', function (done) {
+    nockBack('auth2.json', function (nockDone) {
+      server.methods.customPrefix.info(function (err, body, headers) {
+        var body1 = body
+          , err1 = err
+          , headers1 = headers;
+        Code.expect(err).to.be.null();
+        Code.expect(body).to.be.object();
+        Code.expect(headers).to.be.object();
+        Code.expect(headers.statusCode).to.equal(200);
+        Code.expect(body.db_name).to.equal('test2');
+        server.methods.customPrefix.info(function (err, body, headers) {
+          Code.expect(err).to.deep.equal(err1);
+          Code.expect(body).to.deep.equal(body1);
+          Code.expect(headers).to.deep.equal(headers1);
+          Nock.cleanAll();
+          nockDone();
+          done();
+        });
+      });
+    });
+  });
+
+  lab.test('Two requests with delay will reassign cookie if passed in headers', function (done) {
+    nockBack('cookie.json', function (nockDone) {
+      server.methods.customPrefix.info(function (err, body, headers) {
+        var body1 = body
+          , err1 = err
+          , headers1 = headers;
+        Code.expect(err).to.be.null();
+        Code.expect(body).to.be.object();
+        Code.expect(headers).to.be.object();
+        Code.expect(headers.statusCode).to.equal(200);
+        Code.expect(body.db_name).to.equal('test2');
+        server.methods.customPrefix.info(function (err, body, headers) {
+          Code.expect(err).to.deep.equal(err1);
+          Code.expect(body).to.deep.equal(body1);
+          Code.expect(headers['set-cookie']).to.be.array();
+          Nock.cleanAll();
+          nockDone();
+          done();
+        });
       });
     });
   });
