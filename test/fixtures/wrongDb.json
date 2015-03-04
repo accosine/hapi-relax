@@ -1,0 +1,20 @@
+[
+  {
+    "scope": "http://localhost:5984",
+    "method": "GET",
+    "path": "/wrong/doc1",
+    "body": "",
+    "status": 404,
+    "response": {
+      "error": "not_found",
+      "reason": "no_db_file"
+    },
+    "headers": {
+      "date": "Wed, 04 Mar 2015 09:39:34 GMT",
+      "content-type": "application/json",
+      "cache-control": "must-revalidate",
+      "statusCode": 404,
+      "uri": "http://localhost:5984/wrong/doc1"
+    }
+  }
+]

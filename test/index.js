@@ -49,8 +49,6 @@ lab.experiment('Server methods', function() {
   });
 
   lab.test('Get method returns document', function (done) {
-    var nockCallObjects = Nock.recorder.play();
-
     nockBack('getDoc0.json', function (nockDone) {
       server.methods.customPrefix.get('doc0', function (err, body, headers) {
         Code.expect(err).to.be.null();
@@ -69,12 +67,25 @@ lab.experiment('Server methods', function() {
   });
 
   lab.test('Get method returns error for non existing document', function (done) {
-    var nockCallObjects = Nock.recorder.play();
-
     nockBack('getDoc1.json', function (nockDone) {
       server.methods.customPrefix.get('doc1', function (err, body, headers) {
         Code.expect(err).to.be.an.instanceof(Error);
         Code.expect(err.reason).to.equal('missing');
+        Code.expect(err.statusCode).to.equal(404);
+        Code.expect(err.errid).to.equal('non_200');
+        Code.expect(err.description).to.equal('couch returned 404');
+        Nock.cleanAll();
+        nockDone();
+        done();
+      });
+    });
+  });
+
+  lab.test('Get method returns error for non existing document in non existing database', function (done) {
+    nockBack('wrongDb.json', function (nockDone) {
+      server.methods.wrong.get('doc1', function (err, body, headers) {
+        Code.expect(err).to.be.an.instanceof(Error);
+        Code.expect(err.reason).to.equal('no_db_file');
         Code.expect(err.statusCode).to.equal(404);
         Code.expect(err.errid).to.equal('non_200');
         Code.expect(err.description).to.equal('couch returned 404');

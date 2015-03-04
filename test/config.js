@@ -37,6 +37,18 @@ module.exports = {
           'password': 'asdf',
           'prefix': 'customPrefix'
         }
+      },
+      {
+        'register': require('../index'),
+        'options': {
+          'nano': {
+            'url': 'http://localhost:5984',
+            'db': 'wrong'
+          },
+          'user': 'root',
+          'password': 'asdf',
+          'prefix': 'wrong'
+        }
       }
     ],
     'c': [
