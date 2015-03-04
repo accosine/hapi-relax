@@ -1,17 +1,35 @@
+[![Build Status](https://travis-ci.org/accosine/hapi-relax.svg)](https://travis-ci.org/accosine/hapi-relax)[![Dependency Status](https://david-dm.org/accosine/hapi-relax.svg)](https://david-dm.org/accosine/hapi-relax)
 ## hapi-relax
 
 [**hapi**](https://github.com/hapijs/hapi) plugin that registers server methods using [**nano**](https://github.com/dscape/nano) and extends it by taking care of cookie authentication
 
 ### Introduction
-hapi-relax enhances your hapi server by an interface for a specified CouchDB database. You can also pass a username and password and your can relax and stop worrying about authentication. When your cookie is invalid, it will fetch a new one and when CouchDB gives you a new one, it will update the plugin internally.
+hapi-relax enhances your hapi server by an interface for a specified CouchDB database.  
+If you're using cookie authentication on top of basic-auth you can also pass a username and password. Just relax and stop worrying about authentication because the plugin will check if you are authorized. If not it will use nano's auth method to get a cookie and use that in a further request. But you won't  notice because that all happens internally.  
+It will also update its cookie when CouchDB sends a new cookie in the headers.
 
 ### Usage
+```
+var Hapi = require('hapi');
+var server = new Hapi.Server();
+var options = { nano: { db: 'testDb' } };
+
+server.connection({ port: 80 });
+
+server.register({ register: require('hapi-relax'), options }, function(err) {
+});
+
+server.start();
+```
+
 The plugin takes the following options:
 
-- `nano` - optional config which nano will be initialized with. Defaults to `{ host: 'http://localhost:5984' }`
+- `nano` - optional config object which nano will be initialized with.  
+`db` is required. Defaults to `{ url: 'http://localhost:5984' }`
 - `user` - optional database username
-- `password` - optional password for your database user
-- `prefix` - optional namespace in which the server methods will be registered, the plugin can be registered multiple times e.g. for multiple databases or hosts. Defaults to `nano`
+- `password` - optional password for your database user; required if user is passed
+- `prefix` - optional namespace in which the server methods will be registered;  
+required if the plugin is registered multiple times e.g. for multiple databases or hosts. Defaults to `nano`
 
 ### API
 [**nanos**](https://github.com/dscape/nano) API remains unchanged
@@ -38,11 +56,9 @@ The plugin takes the following options:
 - spatial
 - view
 - viewWithList
-- multipartInsert
-- multipartGet
-- attachmentInsert
-- attachmentGet
-- attachmentDestroy
+- multipart: {insert, get}
+- attachment: {insert, get, destroy}
+
 
 ### Example
 ```
