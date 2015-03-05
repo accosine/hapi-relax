@@ -6,7 +6,7 @@
   "scripts": {
     "test": "./node_modules/lab/bin/lab -c -v -L -l",
     "unmocked": "NOCK_OFF=true ./node_modules/lab/bin/lab -c -v -L -l",
-    "coverage": "./node_modules/lab -r lcov"
+    "coverage": "./node_modules/lab/bin/lab -r lcov"
   },
   "repository": {
     "type": "git",
