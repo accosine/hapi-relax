@@ -4,3 +4,9 @@ node_js:
   - "0.11"
   - "0.12"
   - "iojs"
+addons:
+  code_climate:
+    repo_token:
+      secure: "JDXve95z42nYVF5FpgSYupNdXSWCG/mZFnNW5couhDjOklBlQZvULTSqH8t4s9bBYBl+AVSb3tfRz7gPtENMdgyt99cNaPtXwZlepJBwQUigxGWiMquC1B5r5MXRVSnPCSn+25r8MuiQGliYyD3a3zYOhFKz6H3kxSpUirgV2RU="
+after_script:
+  - npm run coverage | codeclimate

@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/accosine/hapi-relax.svg)](https://travis-ci.org/accosine/hapi-relax)[![Dependency Status](https://david-dm.org/accosine/hapi-relax.svg)](https://david-dm.org/accosine/hapi-relax)
+[![Build Status](https://travis-ci.org/accosine/hapi-relax.svg)](https://travis-ci.org/accosine/hapi-relax)[![Code Climate](https://codeclimate.com/github/accosine/hapi-relax/badges/gpa.svg)](https://codeclimate.com/github/accosine/hapi-relax)[![Test Coverage](https://codeclimate.com/github/accosine/hapi-relax/badges/coverage.svg)](https://codeclimate.com/github/accosine/hapi-relax)[![Dependency Status](https://david-dm.org/accosine/hapi-relax.svg)](https://david-dm.org/accosine/hapi-relax)
 ## hapi-relax
 
 [**hapi**](https://github.com/hapijs/hapi) plugin that registers server methods using [**nano**](https://github.com/dscape/nano) and extends it by taking care of cookie authentication
