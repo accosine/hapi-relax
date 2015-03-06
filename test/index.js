@@ -145,6 +145,7 @@ lab.experiment('Authentication', function() {
     });
   });
 
+  // Set couch_httpd_auth timeout to something like 10 seconds for this test to pass unmocked
   lab.test('Two requests with delay will reassign cookie if passed in headers', function (done) {
     nockBack('cookie.json', function (nockDone) {
       server.methods.customPrefix.info(function (err, body, headers) {
@@ -156,14 +157,16 @@ lab.experiment('Authentication', function() {
         Code.expect(headers).to.be.object();
         Code.expect(headers.statusCode).to.equal(200);
         Code.expect(body.db_name).to.equal('test2');
-        server.methods.customPrefix.info(function (err, body, headers) {
-          Code.expect(err).to.deep.equal(err1);
-          Code.expect(body).to.deep.equal(body1);
-          Code.expect(headers['set-cookie']).to.be.array();
-          Nock.cleanAll();
-          nockDone();
-          done();
-        });
+        setTimeout(function () {
+          server.methods.customPrefix.info(function (err, body, headers) {
+            Code.expect(err).to.deep.equal(err1);
+            Code.expect(body).to.deep.equal(body1);
+            Code.expect(headers['set-cookie']).to.be.array();
+            Nock.cleanAll();
+            nockDone();
+            done();
+          });
+        }, process.env.NOCK_OFF ? 5000 : 0);
       });
     });
   });

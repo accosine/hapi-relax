@@ -5,7 +5,7 @@
   "main": "index",
   "scripts": {
     "test": "./node_modules/lab/bin/lab -c -v -L -l",
-    "unmocked": "NOCK_OFF=true ./node_modules/lab/bin/lab -c -v -L -l",
+    "unmocked": "NOCK_OFF=true ./node_modules/lab/bin/lab -c -v -L -l -m 6000",
     "coverage": "./node_modules/lab/bin/lab -r lcov"
   },
   "repository": {
