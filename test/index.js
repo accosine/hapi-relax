@@ -2,13 +2,14 @@ var Code = require('code')
   , Hapi = require('hapi')
   , Lab = require('lab')
   , Nock = require('nock')
+  , path = require('path')
   , config = require('./config');
 
 var lab = exports.lab = Lab.script()
   , nockBack = Nock.back;
 
 var plugins = config.plugins;
-nockBack.fixtures = __dirname + '/fixtures';
+nockBack.fixtures = path.join(__dirname, 'fixtures');
 
 lab.experiment('Plugin registration', function() {
   var server;
@@ -44,6 +45,9 @@ lab.experiment('Server methods', function() {
 
   lab.before(function (done) {
     server.register(plugins.b, function (err) {
+      if (err) {
+        throw err;
+      }
       done();
     });
   });
@@ -102,6 +106,9 @@ lab.experiment('Authentication', function() {
 
   lab.before(function (done) {
     server.register(plugins.b.concat(plugins.c), function (err) {
+      if (err) {
+        throw err;
+      }
       done();
     });
   });
