@@ -2,8 +2,8 @@ var Code = require('code')
   , Hapi = require('hapi')
   , Lab = require('lab')
   , Nock = require('nock')
-  , path = require('path')
-  , config = require('./config');
+  , config = require('./config')
+  , path = require('path');
 
 var lab = exports.lab = Lab.script()
   , nockBack = Nock.back;
