@@ -32,7 +32,7 @@ The plugin takes the following options:
 required if the plugin is registered multiple times e.g. for multiple databases or hosts. Defaults to `nano`
 
 ### API
-[**nanos**](https://github.com/dscape/nano) API remains unchanged
+[**nano's**](https://github.com/dscape/nano) API remains unchanged
 
 - info
 - replicate
