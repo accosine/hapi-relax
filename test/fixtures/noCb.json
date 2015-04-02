@@ -1,0 +1,64 @@
+[
+  {
+    "scope": "http://localhost:5984",
+    "method": "GET",
+    "path": "/test2/doc0",
+    "body": "",
+    "status": 401,
+    "response": {
+      "error": "unauthorized",
+      "reason": "You are not authorized to access this db."
+    },
+    "headers": {
+      "date": "Thu, 02 Apr 2015 01:33:14 GMT",
+      "content-type": "application/json",
+      "cache-control": "must-revalidate",
+      "statusCode": 401,
+      "uri": "http://localhost:5984/test2/doc0"
+    }
+  },
+  {
+    "scope": "http://localhost:5984",
+    "method": "POST",
+    "path": "/_session",
+    "body": "name=root&password=asdf",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "name": null,
+      "roles": [
+        "_admin"
+      ]
+    },
+    "headers": {
+      "set-cookie": [
+        "AuthSession=cm9vdDo1NTFDOUM1QTp9Z4UqMHKd0ff2HsebT6-r5mjQfQ; Version=1; Path=/; HttpOnly"
+      ],
+      "date": "Thu, 02 Apr 2015 01:33:14 GMT",
+      "content-type": "application/json",
+      "cache-control": "must-revalidate",
+      "statusCode": 200,
+      "uri": "http://localhost:5984/_session"
+    }
+  },
+  {
+    "scope": "http://localhost:5984",
+    "method": "GET",
+    "path": "/test2/doc0",
+    "body": "",
+    "status": 200,
+    "response": {
+      "_id": "doc0",
+      "_rev": "1-3ec62263db2889b25d495bd0ed649271",
+      "content": "Hello universe!"
+    },
+    "headers": {
+      "server": "CouchDB/1.6.1 (Erlang OTP/17)",
+      "etag": "\"1-3ec62263db2889b25d495bd0ed649271\"",
+      "date": "Thu, 02 Apr 2015 01:33:14 GMT",
+      "content-type": "application/json",
+      "content-length": "87",
+      "cache-control": "must-revalidate"
+    }
+  }
+]

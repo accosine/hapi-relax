@@ -99,6 +99,30 @@ lab.experiment('Server methods', function() {
       });
     });
   });
+
+  lab.test('Does not crash if no callback is passed', function (done) {
+    nockBack('noCb.json', function (nockDone) {
+      server.methods.customPrefix.get('doc0');
+      // give it some time to breathe because we have no callback
+      setTimeout(function() {
+        Nock.cleanAll();
+        nockDone();
+        done();
+      }, 500);
+    });
+  });
+
+  lab.test('Does not crash if no arguments at all', function (done) {
+    nockBack('noArgs.json', function (nockDone) {
+      server.methods.customPrefix.info();
+      // give it some time to breathe because we have no callback
+      setTimeout(function() {
+        Nock.cleanAll();
+        nockDone();
+        done();
+      }, 500);
+    });
+  });
 });
 
 lab.experiment('Authentication', function() {

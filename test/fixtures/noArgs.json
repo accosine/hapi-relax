@@ -1,0 +1,71 @@
+[
+  {
+    "scope": "http://localhost:5984",
+    "method": "GET",
+    "path": "/test2",
+    "body": "",
+    "status": 401,
+    "response": {
+      "error": "unauthorized",
+      "reason": "You are not authorized to access this db."
+    },
+    "headers": {
+      "date": "Thu, 02 Apr 2015 10:29:49 GMT",
+      "content-type": "application/json",
+      "cache-control": "must-revalidate",
+      "statusCode": 401,
+      "uri": "http://localhost:5984/test2"
+    }
+  },
+  {
+    "scope": "http://localhost:5984",
+    "method": "POST",
+    "path": "/_session",
+    "body": "name=root&password=asdf",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "name": null,
+      "roles": [
+        "_admin"
+      ]
+    },
+    "headers": {
+      "set-cookie": [
+        "AuthSession=cm9vdDo1NTFEMUExRDrY2Jj-aF_pTaoDm7MdkeiMO5mTHQ; Version=1; Path=/; HttpOnly"
+      ],
+      "date": "Thu, 02 Apr 2015 10:29:49 GMT",
+      "content-type": "application/json",
+      "cache-control": "must-revalidate",
+      "statusCode": 200,
+      "uri": "http://localhost:5984/_session"
+    }
+  },
+  {
+    "scope": "http://localhost:5984",
+    "method": "GET",
+    "path": "/test2",
+    "body": "",
+    "status": 200,
+    "response": {
+      "db_name": "test2",
+      "doc_count": 1,
+      "doc_del_count": 0,
+      "update_seq": 2,
+      "purge_seq": 0,
+      "compact_running": false,
+      "disk_size": 8283,
+      "data_size": 241,
+      "instance_start_time": "1427970352291225",
+      "disk_format_version": 6,
+      "committed_update_seq": 2
+    },
+    "headers": {
+      "server": "CouchDB/1.6.1 (Erlang OTP/17)",
+      "date": "Thu, 02 Apr 2015 10:29:49 GMT",
+      "content-type": "application/json",
+      "content-length": "228",
+      "cache-control": "must-revalidate"
+    }
+  }
+]
